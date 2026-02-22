@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
+import Entypo from "@expo/vector-icons/Entypo";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 export default function QuickDonation() {
   return (
@@ -16,21 +18,24 @@ export default function QuickDonation() {
       <View style={styles.donationOptions}>
         <View style={styles.row}>
           <TouchableOpacity style={styles.donateButton}>
+            <Entypo name="wallet" size={24} color="#007c4f" />
             <Text style={styles.donateButtonText}>Zakat</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.donateButton}>
+            <FontAwesome5 name="hand-holding-heart" size={24} color="#007c4f" />
             <Text style={styles.donateButtonText}>Sadaqa</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.row}>
           <TouchableOpacity style={styles.donateButton}>
-            <Feather name="gift" size={24} color="black" />
+            <Feather name="gift" size={24} color="#007c4f" />
             <Text style={styles.donateButtonText}>General</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.donateButton}>
+            <FontAwesome5 name="star-of-life" size={24} color="#007c4f" />
             <Text style={styles.donateButtonText}>Relief</Text>
           </TouchableOpacity>
         </View>
