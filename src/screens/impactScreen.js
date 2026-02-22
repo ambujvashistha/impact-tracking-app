@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 export default function ImpactScreen() {
   return (
     <View>
-      <Text>Impact Dashboard Screen</Text>
+      <Text>Impact Screen</Text>
     </View>
   );
 }
