@@ -3,14 +3,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ExploreScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Explore Campaigns</Text>
         <Text style={styles.subtitle}>Discover causes and make an impact</Text>
       </View>
 
       <View style={styles.listContainer}></View>
-    </SafeAreaView>
+    </View>
   );
 }
 
