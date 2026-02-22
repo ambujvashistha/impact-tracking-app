@@ -35,7 +35,9 @@ export default function QuickDonation() {
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.donateButton}>
-            <FontAwesome5 name="star-of-life" size={24} color="#007c4f" />
+            {/* <View style={styles.circle}> */}
+              <FontAwesome5 name="star-of-life" size={24} color="#007c4f" />
+            {/* </View> */}
             <Text style={styles.donateButtonText}>Relief</Text>
           </TouchableOpacity>
         </View>
@@ -43,7 +45,6 @@ export default function QuickDonation() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f4f6",
     borderRadius: 20,
     paddingVertical: 28,
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
@@ -76,5 +78,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#111827",
+  },
+  circle: {
+    width: 60,
+    height: 60,
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#c4ebdd",
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });
