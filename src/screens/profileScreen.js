@@ -1,53 +1,28 @@
-import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
-export default function ProfileScreen() {
+export default function ImpactScreen() {
   return (
-    <ScrollView contentContainerStyle={styles.scrollContent}>
+    <ScrollView
+      contentContainerStyle={styles.scrollContent}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.header}>
         <Image
           source={require("../../assets/doom.jpg")}
           style={styles.avatar}
         />
-       <Text style={styles.name}>John Doe</Text>
-        <Text style={styles.description}>Crazy description of John Doe</Text>
+        <Text style={styles.name}>Dr Doom</Text>
+        <Text style={styles.description}>Crazy description of Dr Doom</Text>
         <TouchableOpacity style={styles.editButton}>
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Total Impact</Text>
-        <Text style={styles.sectionValue}>$12,345</Text>
-      </View>
-      <View style={styles.impact}>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Lives Touched</Text>
-          <Text style={styles.sectionValue}>1,234</Text>
-        </View>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Campaigns</Text>
-          <Text style={styles.sectionValue}>56</Text>
-        </View>
-      </View>
-
-      <View style={styles.sectionTax}>
-        <Text style={styles.sectionTaxTitle}>Tax Savings</Text>
-        <Text style={styles.sectionTaxText}>
-          Download your FY 2024-25 tax-exempt certificate now.
-        </Text>
-        <TouchableOpacity style={styles.downloadButton}>
-          <Text style={styles.downloadButtonText}>Download</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Total Impact</Text>
-        <Text style={styles.sectionValue}>$12,345</Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Total Impact</Text>
-        <Text style={styles.sectionValue}>$12,345</Text>
       </View>
 
       <View style={styles.section}>
@@ -73,6 +48,7 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
     backgroundColor: "#F5F6F8",
   },
@@ -124,11 +100,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
     paddingVertical: 8,
     paddingHorizontal: 20,
-    backgroundColor: "#649b75",
+    backgroundColor: "#c4ebdd",
     borderRadius: 8,
   },
   editButtonText: {
-    color: "#ffffff",
+    color: "#007c4f",
     fontSize: 14,
     fontWeight: "500",
   },
