@@ -3,8 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ImpactScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+    // <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Image
             source={require("../../assets/doom.jpg")}
@@ -70,12 +70,13 @@ export default function ImpactScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
     backgroundColor: "#F5F6F8",
   },
