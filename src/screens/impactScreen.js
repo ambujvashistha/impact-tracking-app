@@ -1,9 +1,7 @@
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ImpactScreen() {
   return (
-    // <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Image
@@ -70,7 +68,6 @@ export default function ImpactScreen() {
           </View>
         </View>
       </ScrollView>
-    // </SafeAreaView>
   );
 }
 

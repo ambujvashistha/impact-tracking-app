@@ -1,76 +1,73 @@
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ProfileScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.header}>
-          <Image
-            source={{ uri: "https://via.placeholder.com/100" }}
-            style={styles.avatar}
-          />
-          <Text style={styles.name}>John Doe</Text>
-          <Text style={styles.description}>Crazy description of John Doe</Text>
-          <TouchableOpacity style={styles.editButton}>
-            <Text style={styles.editButtonText}>Edit Profile</Text>
+    <ScrollView contentContainerStyle={styles.scrollContent}>
+      <View style={styles.header}>
+        <Image
+          source={require("../../assets/doom.jpg")}
+          style={styles.avatar}
+        />
+       <Text style={styles.name}>John Doe</Text>
+        <Text style={styles.description}>Crazy description of John Doe</Text>
+        <TouchableOpacity style={styles.editButton}>
+          <Text style={styles.editButtonText}>Edit Profile</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Total Impact</Text>
+        <Text style={styles.sectionValue}>$12,345</Text>
+      </View>
+      <View style={styles.impact}>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Lives Touched</Text>
+          <Text style={styles.sectionValue}>1,234</Text>
+        </View>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Campaigns</Text>
+          <Text style={styles.sectionValue}>56</Text>
+        </View>
+      </View>
+
+      <View style={styles.sectionTax}>
+        <Text style={styles.sectionTaxTitle}>Tax Savings</Text>
+        <Text style={styles.sectionTaxText}>
+          Download your FY 2024-25 tax-exempt certificate now.
+        </Text>
+        <TouchableOpacity style={styles.downloadButton}>
+          <Text style={styles.downloadButtonText}>Download</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Total Impact</Text>
+        <Text style={styles.sectionValue}>$12,345</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Total Impact</Text>
+        <Text style={styles.sectionValue}>$12,345</Text>
+      </View>
+
+      <View style={styles.section}>
+        <View style={styles.section}>
+          <TouchableOpacity>
+            <Text>Notification Preferences</Text>
           </TouchableOpacity>
         </View>
-
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
-        </View>
-        <View style={styles.impact}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Lives Touched</Text>
-            <Text style={styles.sectionValue}>1,234</Text>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Campaigns</Text>
-            <Text style={styles.sectionValue}>56</Text>
-          </View>
-        </View>
-
-        <View style={styles.sectionTax}>
-          <Text style={styles.sectionTaxTitle}>
-            Tax Savings
-          </Text>
-          <Text style={styles.sectionTaxText}>Download your FY 2024-25 tax-exempt certificate now.</Text>
-          <TouchableOpacity style={styles.downloadButton}>
-            <Text style={styles.downloadButtonText}>Download</Text>
+          <TouchableOpacity>
+            <Text>Security & App PIN</Text>
           </TouchableOpacity>
         </View>
-
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
+          <TouchableOpacity>
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </TouchableOpacity>
         </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text>Notification Preferences</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text>Security & App PIN</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      </View>
+    </ScrollView>
   );
 }
 
