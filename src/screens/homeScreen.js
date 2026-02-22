@@ -1,5 +1,6 @@
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity,TextInput } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import QuickDonation from "../components/quickDonation";
 
 export default function HomeScreen() {
   return (
@@ -35,6 +36,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
+        <QuickDonation />
       </ScrollView>
     </View>
   );
