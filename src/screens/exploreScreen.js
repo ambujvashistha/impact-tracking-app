@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-export default function ImpactScreen() {
+export default function ExploreScreen() {
   return (
     <View>
-      <Text>Impact Dashboard Screen</Text>
+      <Text>Explore Screen</Text>
     </View>
   );
 }
