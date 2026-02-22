@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity,TextInput } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function HomeScreen() {
@@ -15,65 +15,26 @@ export default function HomeScreen() {
             <Text style={styles.name}>Dr Doom</Text>
             <Text style={styles.description}>Crazy description of Dr Doom</Text>
           </View>
-            <TouchableOpacity>
-              <Ionicons name="notifications" size={24} color="grey" />
-            </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Ionicons name="notifications" size={24} color="grey" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.totalImpact}>
           <Text style={styles.totalImpactText}>Your Total Impact</Text>
           <Text style={styles.totalImpactTitle}>12 Families</Text>
           <Text style={styles.totalImpactText}>
-            Download your FY 2024-25 tax-exempt certificate now.
+            Supported through your generous contributions.
           </Text>
         </View>
+        <TextInput style={styles.searchInput} placeholder="Search campaigns (eg: Assam Relief)"></TextInput>
       </View>
+
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
-        </View>
-        <View style={styles.impact}>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Lives Touched</Text>
-            <Text style={styles.sectionValue}>1,234</Text>
-          </View>
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Campaigns</Text>
-            <Text style={styles.sectionValue}>56</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Total Impact</Text>
-          <Text style={styles.sectionValue}>$12,345</Text>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text>Notification Preferences</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text>Security & App PIN</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.section}>
-            <TouchableOpacity>
-              <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
     </View>
   );
@@ -183,11 +144,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },totalImpact: {
     backgroundColor: "#007c4f",
+    display: "flex",
     padding: 16,
     borderRadius: 12,
     marginBottom: 10,
     marginTop: 20,
-    alignItems: "center",
+    alignItems: "column",
+    justifyContent: "space-evenly",
   },
   totalImpactTitle: {
     fontSize: 20,
@@ -203,6 +166,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "start",
     gap: 16,
+    },
+    searchInput: {
+    backgroundColor: "#fff",
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    width: "100%",
     }
 });
