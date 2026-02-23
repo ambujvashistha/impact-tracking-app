@@ -1,5 +1,9 @@
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Octicons from "@expo/vector-icons/Octicons";
+import AccountPreferences from "../components/accountPreferences";
 
 export default function ImpactScreen() {
   return (
@@ -55,23 +59,7 @@ export default function ImpactScreen() {
         <Text style={styles.sectionValue}>$12,345</Text>
       </View>
 
-      <View style={styles.section}>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text>Notification Preferences</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text>Security & App PIN</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text style={styles.signOutText}>Sign Out</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <AccountPreferences />
     </ScrollView>
   );
 }
@@ -178,5 +166,14 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     marginTop: 10,
     marginBottom: 12,
+  },footerButton: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    borderColor: "#e5e7eb",
   },
+  
 });
