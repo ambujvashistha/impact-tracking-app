@@ -1,44 +1,51 @@
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity,TextInput } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import QuickDonation from "../components/quickDonation";
+import UrgentRelief from "../components/urgentRelief";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.topSection}>
-          <Image
-            source={require("../../assets/doom.jpg")}
-            style={styles.avatar}
-          />
-
-          <View>
-            <Text style={styles.name}>Dr Doom</Text>
-            <Text style={styles.description}>Crazy description of Dr Doom</Text>
-          </View>
-
-          <TouchableOpacity>
-            <Ionicons name="notifications" size={24} color="grey" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.totalImpact}>
-          <Text style={styles.totalImpactText}>Your Total Impact</Text>
-          <Text style={styles.totalImpactTitle}>12 Families</Text>
-          <Text style={styles.totalImpactText}>
-            Supported through your generous contributions.
-          </Text>
-        </View>
-        <TextInput style={styles.searchInput} placeholder="Search campaigns (eg: Assam Relief)"></TextInput>
-      </View>
-
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        style={styles.container}
       >
+        <View style={styles.header}>
+          <View style={styles.topSection}>
+            <Image
+              source={require("../../assets/doom.jpg")}
+              style={styles.avatar}
+            />
+
+            <View>
+              <Text style={styles.name}>Dr Doom</Text>
+              <Text style={styles.description}>
+                Crazy description of Dr Doom
+              </Text>
+            </View>
+
+            <TouchableOpacity>
+              <Ionicons name="notifications" size={24} color="grey" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.totalImpact}>
+            <Text style={styles.totalImpactText}>Your Total Impact</Text>
+            <Text style={styles.totalImpactTitle}>12 Families</Text>
+            <Text style={styles.totalImpactText}>
+              Supported through your generous contributions.
+            </Text>
+          </View>
+        </View>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search campaigns (eg: Assam Relief)"
+          ></TextInput>
+        
+
+        <UrgentRelief />
         <QuickDonation />
       </ScrollView>
-    </View>
   );
 }
 
