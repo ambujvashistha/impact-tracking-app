@@ -18,9 +18,9 @@ export default function QuickDonation() {
 
         <View style={styles.donationOptions}>
           <ScrollView
-            horizontal
+            horizontal={true}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ gap: 16 }}
+            style={styles.scrollView}
           >
             <TouchableOpacity style={styles.donateButton}>
               <Entypo name="wallet" size={24} color="#007c4f" />
@@ -45,6 +45,11 @@ export default function QuickDonation() {
               <FontAwesome5 name="star-of-life" size={24} color="#007c4f" />
               <Text style={styles.donateButtonText}>Relief</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.donateButton}>
+              <FontAwesome5 name="heart" size={24} color="#007c4f" />
+              <Text style={styles.donateButtonText}>Lillah</Text>
+            </TouchableOpacity>
           </ScrollView>
         </View>
       </View>
@@ -66,7 +71,6 @@ export default function QuickDonation() {
           </TouchableOpacity>
         </View>
 
-
         <View style={styles.amountRow}>
           <TouchableOpacity style={styles.amountButton}>
             <Text style={styles.amountValue}>5,000</Text>
@@ -78,6 +82,12 @@ export default function QuickDonation() {
 
           <TouchableOpacity style={styles.amountButton}>
             <Text style={styles.amountValue}>15K</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.amountRow}>
+          <TouchableOpacity style={styles.customAmountButton}>
+            <Text style={styles.customAmountButtonText}>Enter custom amount</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -95,26 +105,28 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#1f2937",
   },
-  donationOptions: {},
+  donationOptions: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 16,
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 20,
   },
   donateButton: {
-    width: "30%",
+    width: 110,
+    height: 80,
     backgroundColor: "#f3f4f6",
-    borderRadius: 20,
-    paddingVertical: 28,
-    display: "flex",
+    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
+    marginRight: 16,
   },
   donateButtonText: {
     marginTop: 16,
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "600",
     color: "#111827",
   },
@@ -139,7 +151,7 @@ const styles = StyleSheet.create({
   donationSection: {
     marginBottom: 20,
     paddingHorizontal: 20,
-  }, 
+  },
   amountButton: {
     width: "27%",
     backgroundColor: "#f3f4f6",
@@ -156,9 +168,29 @@ const styles = StyleSheet.create({
   amountSection: {
     paddingHorizontal: 20,
     gap: 10,
-  },amountRow: {
+  },
+  amountRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 12,
+  },
+  scrollView: {
+    paddingBottom: 10,
+  },
+  customAmountButton: {
+    width: "100%",
+    backgroundColor: "#f3f4f6",
+    borderRadius: 20,
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    display: "flex",
+    alignItems: "start",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+  },customAmountButtonText: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "gray",
   },
 });
