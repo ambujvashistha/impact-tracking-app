@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   heading: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "700",
     color: "#111827",
   },
