@@ -14,19 +14,19 @@ export default function AccountPreferences() {
   return (
     <View style={styles.section}>
       <View style={styles.section}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.preferenceItem}>
           <Ionicons name="notifications" size={24} color="lightgrey" />
           <Text>Notification Preferences</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.section}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.preferenceItem}>
           <FontAwesome6 name="shield-halved" size={24} color="lightgrey" />
           <Text>Security & App PIN</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.section}>
-        <TouchableOpacity>
+        <TouchableOpacity  style={styles.preferenceItem}>
           <Octicons name="sign-out" size={24} color="#e66464" />
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
@@ -133,5 +133,11 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     marginTop: 10,
     marginBottom: 12,
+  },
+  preferenceItem: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
   },
 });

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
 const history = [
   {
@@ -41,8 +41,13 @@ export default function DonationHistory() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Donation History</Text>
-
+      <View style={styles.header}>
+        <Text style={styles.heading}>Donation History</Text>
+        
+        <TouchableOpacity>
+          <Text style={{ color: "#007c4f", fontSize: 18, fontWeight: "500" }}>View Statement</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={history}
         keyExtractor={(item) => item.id}
@@ -60,7 +65,6 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 18,
     fontWeight: "600",
-    marginBottom: 16,
     color: "#111827",
   },
   card: {
@@ -96,5 +100,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#6b7280",
     marginTop: 4,
-  },
+  },header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 16,
+    }
 });
