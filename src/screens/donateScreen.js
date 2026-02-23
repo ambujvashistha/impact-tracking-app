@@ -21,29 +21,45 @@ export default function DonateScreen() {
 
   const amounts = [500, 1000, 2000, 5000, 10000, 25000];
 
+  const donationTypes = [
+    { label: "Zakat", icon: <Entypo name="wallet" size={20} /> },
+    { label: "Sadaqa", icon: <FontAwesome5 name="hand-holding-heart" size={18} /> },
+    { label: "Lillah", icon: <Feather name="heart" size={20} /> },
+  ];
+
+  const paymentMethods = [
+    {
+      label: "UPI",
+      icon: <Feather name="smartphone" size={20} />,
+    },
+    {
+      label: "Card",
+      icon: <Feather name="credit-card" size={20} />,
+    },
+    {
+      label: "NetBanking",
+      icon: <MaterialIcons name="account-balance" size={20} />,
+    },
+  ];
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.sectionTitle}>DONATION TYPE</Text>
 
         <View style={styles.typeRow}>
-          {["Zakat", "Sadaqa", "Lillah"].map((type) => (
+          {donationTypes.map((type) => (
             <TouchableOpacity
-              key={type}
-              style={[
-                styles.typeButton,
-                selectedType === type && styles.typeButtonActive,
-              ]}
-              onPress={() => setSelectedType(type)}
-            >
-              <Text
-                style={[
-                  styles.typeText,
-                  selectedType === type && styles.typeTextActive,
-                ]}
-              >
-                {type}
-              </Text>
+              key={type.label}
+              style={[styles.typeButton, selectedType === type.label && styles.typeButtonActive, ]}
+              onPress={() => setSelectedType(type.label)}>
+              <View style={styles.typeContent}>
+                {type.icon}
+                <Text
+                  style={[styles.typeText, selectedType === type.label && styles.typeTextActive,]}>
+                  {type.label}
+                </Text>
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -54,35 +70,27 @@ export default function DonateScreen() {
           {amounts.map((amt) => (
             <TouchableOpacity
               key={amt}
-              style={[
-                styles.amountButton,
-                selectedAmount === amt && styles.amountButtonActive,
-              ]}
-              onPress={() => setSelectedAmount(amt)}
-            >
-              <Text
-                style={[
-                  styles.amountText,
-                  selectedAmount === amt && styles.amountTextActive,
-                ]}
-              >
+              style={[ styles.amountButton, selectedAmount === amt && styles.amountButtonActive]}
+              onPress={() => setSelectedAmount(amt)}>
+              <Text style={[ styles.amountText, selectedAmount === amt && styles.amountTextActive,]}>
                 ₹{amt >= 10000 ? amt / 1000 + "k" : amt.toLocaleString()}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <TextInput
-          placeholder="Enter custom amount"
-          style={styles.customInput}
-          keyboardType="numeric"
-        />
+        <TextInput placeholder="Enter custom amount" style={styles.customInput} keyboardType="numeric" />
 
         <View style={styles.recurringCard}>
-          <Text style={styles.recurringTitle}>Monthly Recurring</Text>
-          <Text style={styles.recurringSub}>
-            Automate your rewards every month
-          </Text>
+          <View style={styles.recurringRow}>
+            <Feather name="refresh-ccw" size={20} color="#0f7c4f" />
+            <View style={{ marginLeft: 10 }}>
+              <Text style={styles.recurringTitle}>Monthly Recurring</Text>
+              <Text style={styles.recurringSub}>
+                Automate your rewards every month
+              </Text>
+            </View>
+          </View>
         </View>
 
         <View style={styles.card}>
@@ -98,23 +106,20 @@ export default function DonateScreen() {
 
         <Text style={styles.sectionTitle}>SECURE PAYMENT</Text>
 
-        {["UPI", "Card", "NetBanking"].map((method) => (
+        {paymentMethods.map((method) => (
           <TouchableOpacity
-            key={method}
-            style={[
-              styles.paymentButton,
-              paymentMethod === method && styles.paymentActive,
-            ]}
-            onPress={() => setPaymentMethod(method)}
-          >
-            <Text
-              style={[
-                styles.paymentText,
-                paymentMethod === method && styles.paymentTextActive,
-              ]}
-            >
-              {method}
-            </Text>
+            key={method.label}
+            style={[ styles.paymentButton, paymentMethod === method.label && styles.paymentActive, ]} onPress={() => setPaymentMethod(method.label)} >
+            <View style={styles.paymentRow}>
+              {method.icon}
+              <Text style={[ styles.paymentText, paymentMethod === method.label && styles.paymentTextActive, ]}>
+                {method.label}
+              </Text>
+            </View>
+
+            <MaterialIcons name={ paymentMethod === method.label ? "radio-button-checked" : "radio-button-unchecked" } size={20}
+              color={paymentMethod === method.label ? "#0f7c4f" : "#9ca3af"}
+            />
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -128,13 +133,20 @@ export default function DonateScreen() {
         </View>
 
         <TouchableOpacity style={styles.donateButton}>
-          <Text style={styles.donateButtonText}>Complete Donation</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={styles.donateButtonText}>Complete Donation</Text>
+            <Feather
+              name="arrow-right"
+              size={18}
+              color="#fff"
+              style={{ marginLeft: 6 }}
+            />
+          </View>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -296,5 +308,33 @@ const styles = StyleSheet.create({
   donateButtonText: {
     color: "#fff",
     fontWeight: "700",
+  },
+  typeContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+
+  recurringRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  paymentButton: {
+    backgroundColor: "#fff",
+    borderRadius: 14,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  paymentRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
 });

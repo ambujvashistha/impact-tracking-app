@@ -74,10 +74,7 @@ export default function CampaignScreen({ route, navigation }) {
       </ScrollView>
 
       <View style={styles.bottomBar}>
-        <TouchableOpacity
-          style={styles.donateButton}
-          onPress={() => navigation.navigate("Donate", { id })}
-        >
+        <TouchableOpacity style={styles.donateButton} onPress={() => navigation.navigate("Donate", { id })} >
           <Text style={styles.donateButtonText}>Donate Now</Text>
         </TouchableOpacity>
       </View>
