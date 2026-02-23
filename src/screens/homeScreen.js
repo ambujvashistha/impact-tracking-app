@@ -2,6 +2,7 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity,TextInput }
 import Ionicons from "@expo/vector-icons/Ionicons";
 import QuickDonation from "../components/quickDonation";
 import UrgentRelief from "../components/urgentRelief";
+import RecentImpact from "../components/recentImpact";
 
 export default function HomeScreen() {
   return (
@@ -45,6 +46,7 @@ export default function HomeScreen() {
 
         <UrgentRelief />
         <QuickDonation />
+        <RecentImpact />
       </ScrollView>
   );
 }

@@ -66,11 +66,11 @@ export default function UrgentRelief() {
 
   return (
     <View style={styles.container}>
-        <View style={styles.headerRow}>
-      <Text style={styles.heading}>Urgent Relief</Text>
-      <TouchableOpacity>
-        <Text style={styles.viewAllText}>View All</Text>
-      </TouchableOpacity>
+      <View style={styles.headerRow}>
+        <Text style={styles.heading}>Urgent Relief</Text>
+        <TouchableOpacity>
+          <Text style={styles.viewAllText}>View All</Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={campaigns}
@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "start",
-    marginBottom: 16,
   },
   viewAllText: {
     color: "#0f7c4f",
