@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import DonateScreen from "./donateScreen";
 
 export default function ExploreScreen() {
   return (
@@ -8,7 +9,8 @@ export default function ExploreScreen() {
         <Text style={styles.title}>Explore Campaigns</Text>
         <Text style={styles.subtitle}>Discover causes and make an impact</Text>
       </View>
-
+      
+      {/* <DonateScreen/> */}
       <View style={styles.listContainer}></View>
     </View>
   );
