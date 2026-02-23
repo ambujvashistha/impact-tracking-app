@@ -15,7 +15,7 @@ export default function ExploreScreen({ navigation }) {
     return (
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("CampaignDetails", { id: item.id })}
+        onPress={() => navigation.navigate("Campaign", { id: item.id })}
       >
         <Image source={{ uri: item.image }} style={styles.image} />
         <View style={styles.content}>
