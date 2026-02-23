@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import AccountPreferences from "../components/accountPreferences";
 
 export default function ImpactScreen() {
   return (
@@ -24,24 +25,7 @@ export default function ImpactScreen() {
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.section}>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text>Notification Preferences</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text>Security & App PIN</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.section}>
-          <TouchableOpacity>
-            <Text style={styles.signOutText}>Sign Out</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <AccountPreferences />
     </ScrollView>
   );
 }

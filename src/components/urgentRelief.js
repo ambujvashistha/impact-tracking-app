@@ -66,7 +66,12 @@ export default function UrgentRelief() {
 
   return (
     <View style={styles.container}>
+        <View style={styles.headerRow}>
       <Text style={styles.heading}>Urgent Relief</Text>
+      <TouchableOpacity>
+        <Text style={styles.viewAllText}>View All</Text>
+      </TouchableOpacity>
+      </View>
       <FlatList
         data={campaigns}
         keyExtractor={(item) => item.id}
@@ -74,7 +79,6 @@ export default function UrgentRelief() {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ gap: 5 }}
-
       />
     </View>
   );
@@ -157,5 +161,16 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#ffffff",
     fontWeight: "600",
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "start",
+    marginBottom: 16,
+  },
+  viewAllText: {
+    color: "#0f7c4f",
+    fontSize: 18,
+    fontWeight: "500",
   },
 });
