@@ -4,6 +4,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Octicons from "@expo/vector-icons/Octicons";
 import AccountPreferences from "../components/accountPreferences";
+import DonationHistory from "../components/donationHistory";
 
 export default function ImpactScreen() {
   return (
@@ -49,15 +50,9 @@ export default function ImpactScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Total Impact</Text>
-        <Text style={styles.sectionValue}>$12,345</Text>
-      </View>
+      
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Total Impact</Text>
-        <Text style={styles.sectionValue}>$12,345</Text>
-      </View>
+      <DonationHistory />
 
       <AccountPreferences />
     </ScrollView>
