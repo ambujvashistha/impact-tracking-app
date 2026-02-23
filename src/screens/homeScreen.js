@@ -1,189 +1,195 @@
-import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity,TextInput } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Feather from "@expo/vector-icons/Feather";
 import QuickDonation from "../components/quickDonation";
 import UrgentRelief from "../components/urgentRelief";
 import RecentImpact from "../components/recentImpact";
 
 export default function HomeScreen() {
   return (
+    <View style={styles.container}>
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
-        style={styles.container}
+        contentContainerStyle={{ paddingBottom: 40 }}
       >
         <View style={styles.header}>
-          <View style={styles.topSection}>
-            <Image
-              source={require("../../assets/doom.jpg")}
-              style={styles.avatar}
-            />
-
-            <View>
-              <Text style={styles.name}>Dr Doom</Text>
-              <Text style={styles.description}>
-                Crazy description of Dr Doom
-              </Text>
+          <View style={styles.headerTop}>
+            <View style={styles.logoRow}>
+              <Ionicons name="leaf-outline" size={22} color="#fff" />
+              <Text style={styles.foundationText}>Jamiat Foundation</Text>
             </View>
 
-            <TouchableOpacity>
-              <Ionicons name="notifications" size={24} color="grey" />
-            </TouchableOpacity>
+            <Ionicons name="notifications-outline" size={22} color="#fff" />
           </View>
 
-          <View style={styles.totalImpact}>
-            <Text style={styles.totalImpactText}>Your Total Impact</Text>
-            <Text style={styles.totalImpactTitle}>12 Families</Text>
-            <Text style={styles.totalImpactText}>
-              Supported through your generous contributions.
+          <View style={styles.verseCard}>
+            <Text style={styles.verseTitle}>QURAN VERSE</Text>
+            <Text style={styles.verseText}>
+              "And whatever you spend in good - it is for yourselves"
             </Text>
+            <Text style={styles.verseRef}>Al-Baqarah 2:272</Text>
           </View>
         </View>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search campaigns (eg: Assam Relief)"
-          ></TextInput>
-        
 
-        <UrgentRelief />
-        <QuickDonation />
-        <RecentImpact />
+        <View style={styles.statsWrapper}>
+          <View style={styles.statsCard}>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>50K+</Text>
+              <Text style={styles.statLabel}>Lives</Text>
+            </View>
+
+            <View style={styles.statDivider} />
+
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>₹2.4Cr</Text>
+              <Text style={styles.statLabel}>Raised</Text>
+            </View>
+
+            <View style={styles.statDivider} />
+
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>12K+</Text>
+              <Text style={styles.statLabel}>Donors</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.content}>
+          <View style={styles.searchBox}>
+            <Feather name="search" size={18} color="#9ca3af" />
+            <TextInput
+              placeholder="Search campaigns..."
+              style={styles.searchInput}
+            />
+          </View>
+
+          <UrgentRelief />
+          <QuickDonation />
+          <RecentImpact />
+        </View>
       </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F6F8",
+    backgroundColor: "#F3F4F6",
   },
-  scrollContent: {
-    padding: 20,
-  },
+
   header: {
-    alignItems: "center",
-    marginBottom: 30,
+    backgroundColor: "#0f7c4f",
+    paddingTop: 60,
+    paddingHorizontal: 20,
+    paddingBottom: 90,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
   },
-  avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 50,
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginTop: 12,
-  },
-  description: {
-    fontSize: 14,
-    fontWeight: "400",
-    marginTop: 2,
-  },
-  impact: {
-    display: "flex",
+
+  headerTop: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    alignItems: "center",
   },
-  section: {
-    backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 10,
+
+  logoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
-  sectionTitle: {
+
+  foundationText: {
+    color: "#fff",
+    fontWeight: "700",
     fontSize: 16,
-    fontWeight: "500",
-    color: "#888",
   },
-  sectionValue: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginTop: 8,
+
+  verseCard: {
+    marginTop: 20,
+    backgroundColor: "#1b8a5a",
+    borderRadius: 16,
+    padding: 16,
   },
-  editButton: {
-    marginTop: 12,
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    backgroundColor: "#c4ebdd",
-    borderRadius: 8,
+
+  verseTitle: {
+    color: "#d1fae5",
+    fontSize: 12,
+    marginBottom: 6,
   },
-  editButtonText: {
-    color: "#007c4f",
+
+  verseText: {
+    color: "#fff",
     fontSize: 14,
     fontWeight: "500",
   },
-  signOutText: {
-    color: "#ff4d4d",
-    fontSize: 16,
-    fontWeight: "500",
+
+  verseRef: {
+    color: "#d1fae5",
+    fontSize: 12,
+    marginTop: 6,
+    textAlign: "right",
   },
-  downloadButton: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 12,
-    paddingVertical: 8,
+
+  statsWrapper: {
+    marginTop: -45,
     paddingHorizontal: 20,
-    backgroundColor: "#ffffff",
-    borderRadius: 8,
   },
-  downloadButtonText: {
-    color: "#007c4f",
-    fontSize: 14,
-    fontWeight: "500",
+
+  statsCard: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 18,
+    paddingHorizontal: 10,
+    elevation: 6,
   },
-  sectionTax: {
-    backgroundColor: "#007c4f",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 10,
-    marginTop: 10,
+
+  statItem: {
+    flex: 1,
     alignItems: "center",
   },
-  sectionTaxTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#ffffff",
-    marginTop: 8,
-  },
-  sectionTaxText: {
+
+  statNumber: {
+    fontWeight: "700",
     fontSize: 16,
-    fontWeight: "400",
-    color: "#ffffff",
-    marginTop: 10,
-    marginBottom: 12,
-  },totalImpact: {
-    backgroundColor: "#007c4f",
-    display: "flex",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 10,
-    marginTop: 20,
-    alignItems: "column",
-    justifyContent: "space-evenly",
   },
-  totalImpactTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#ffffff",
-    marginTop: 8,
+
+  statLabel: {
+    fontSize: 12,
+    color: "#6b7280",
   },
-  totalImpactText: {
-    fontSize: 16,
-    color: "#ffffff",
+
+  statDivider: {
+    width: 1,
+    backgroundColor: "#e5e7eb",
   },
-  topSection: {
-    display: "flex",
+
+  content: {
+    paddingHorizontal: 20,
+    paddingTop: 25,
+  },
+
+  searchBox: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "start",
-    gap: 16,
-    },
-    searchInput: {
     backgroundColor: "#fff",
+    borderRadius: 14,
     paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
-    width: "100%",
-    }
+    height: 45,
+    marginBottom: 20,
+  },
+
+  searchInput: {
+    marginLeft: 8,
+    flex: 1,
+  },
 });

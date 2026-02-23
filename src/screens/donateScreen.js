@@ -5,143 +5,193 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
+  Switch,
 } from "react-native";
 import { useState } from "react";
-import {
-  Feather,
-  Entypo,
-  FontAwesome5,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import campaignData from "../data/campaignData";
 
 export default function DonateScreen() {
+  const [selectedCampaign, setSelectedCampaign] = useState(campaignData[0]);
+  const [showDropdown, setShowDropdown] = useState(false);
   const [selectedType, setSelectedType] = useState("Zakat");
-  const [selectedAmount, setSelectedAmount] = useState(1000);
-  const [paymentMethod, setPaymentMethod] = useState("UPI");
+  const [selectedAmount, setSelectedAmount] = useState(5000);
+  const [frequency, setFrequency] = useState("One-Time");
+  const [taxBenefit, setTaxBenefit] = useState(true);
+  const [dedication, setDedication] = useState("For Myself");
 
-  const amounts = [500, 1000, 2000, 5000, 10000, 25000];
-
-  const donationTypes = [
-    { label: "Zakat", icon: <Entypo name="wallet" size={20} /> },
-    { label: "Sadaqa", icon: <FontAwesome5 name="hand-holding-heart" size={18} /> },
-    { label: "Lillah", icon: <Feather name="heart" size={20} /> },
-  ];
-
-  const paymentMethods = [
-    {
-      label: "UPI",
-      icon: <Feather name="smartphone" size={20} />,
-    },
-    {
-      label: "Card",
-      icon: <Feather name="credit-card" size={20} />,
-    },
-    {
-      label: "NetBanking",
-      icon: <MaterialIcons name="account-balance" size={20} />,
-    },
-  ];
+  const amounts = [1000, 5000, 10000, 15000, 25000];
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Make Your Donation</Text>
+        <Text style={styles.headerSub}>
+          Empowering the Ummah, one life at a time.
+        </Text>
+      </View>
+
+      <View style={styles.progressContainer}>
+        <View style={styles.progressLabels}>
+          <Text style={styles.activeStep}>CAUSE</Text>
+          <Text style={styles.activeStep}>AMOUNT</Text>
+          <Text style={styles.inactiveStep}>DETAILS</Text>
+          <Text style={styles.inactiveStep}>PAYMENT</Text>
+        </View>
+
+        <View style={styles.progressBarBackground}>
+          <View style={styles.progressFill} />
+        </View>
+
+        <Text style={styles.stepText}>Step 2: Selection & Amount</Text>
+      </View>
+
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.sectionTitle}>DONATION TYPE</Text>
+        <Text style={styles.sectionLabel}>Selected Project</Text>
+
+        <TouchableOpacity
+          style={styles.projectBox}
+          onPress={() => setShowDropdown(!showDropdown)}
+        >
+          <Text>{selectedCampaign.title}</Text>
+          <Feather name="chevron-down" size={18} />
+        </TouchableOpacity>
+
+        {showDropdown && (
+          <View style={styles.dropdown}>
+            {campaignData.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                style={styles.dropdownItem}
+                onPress={() => {
+                  setSelectedCampaign(item);
+                  setShowDropdown(false);
+                }}
+              >
+                <Text>{item.title}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
+
+        <Text style={styles.sectionLabel}>Donation Type</Text>
 
         <View style={styles.typeRow}>
-          {donationTypes.map((type) => (
+          {["Zakat", "Sadaqah", "Fitrana", "General"].map((type) => (
             <TouchableOpacity
-              key={type.label}
-              style={[styles.typeButton, selectedType === type.label && styles.typeButtonActive, ]}
-              onPress={() => setSelectedType(type.label)}>
-              <View style={styles.typeContent}>
-                {type.icon}
-                <Text
-                  style={[styles.typeText, selectedType === type.label && styles.typeTextActive,]}>
-                  {type.label}
-                </Text>
-              </View>
+              key={type}
+              style={[
+                styles.typeButton,
+                selectedType === type && styles.typeActive,
+              ]}
+              onPress={() => setSelectedType(type)}
+            >
+              <Text
+                style={[
+                  styles.typeText,
+                  selectedType === type && styles.typeTextActive,
+                ]}
+              >
+                {type}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <Text style={styles.sectionTitle}>SELECT AMOUNT</Text>
+        <Text style={styles.sectionLabel}>Dedicate This Donation</Text>
+
+        <View style={styles.dedicateRow}>
+          {["For Myself", "For Loved One", "In Memory Of"].map((item) => (
+            <TouchableOpacity
+              key={item}
+              style={[
+                styles.dedicateButton,
+                dedication === item && styles.dedicateActive,
+              ]}
+              onPress={() => setDedication(item)}
+            >
+              <Text
+                style={[
+                  styles.dedicateText,
+                  dedication === item && styles.dedicateTextActive,
+                ]}
+              >
+                {item}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <Text style={styles.sectionLabel}>Frequency</Text>
+
+        <View style={styles.frequencyRow}>
+          {["One-Time", "Daily", "Weekly"].map((item) => (
+            <TouchableOpacity
+              key={item}
+              style={[
+                styles.freqButton,
+                frequency === item && styles.freqActive,
+              ]}
+              onPress={() => setFrequency(item)}
+            >
+              <Text
+                style={[
+                  styles.freqText,
+                  frequency === item && styles.freqTextActive,
+                ]}
+              >
+                {item}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <Text style={styles.sectionLabel}>Choose Amount</Text>
 
         <View style={styles.amountGrid}>
           {amounts.map((amt) => (
             <TouchableOpacity
               key={amt}
-              style={[ styles.amountButton, selectedAmount === amt && styles.amountButtonActive]}
-              onPress={() => setSelectedAmount(amt)}>
-              <Text style={[ styles.amountText, selectedAmount === amt && styles.amountTextActive,]}>
-                ₹{amt >= 10000 ? amt / 1000 + "k" : amt.toLocaleString()}
+              style={[
+                styles.amountButton,
+                selectedAmount === amt && styles.amountActive,
+              ]}
+              onPress={() => setSelectedAmount(amt)}
+            >
+              <Text
+                style={[
+                  styles.amountText,
+                  selectedAmount === amt && styles.amountTextActive,
+                ]}
+              >
+                ₹{amt.toLocaleString()}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        <TextInput placeholder="Enter custom amount" style={styles.customInput} keyboardType="numeric" />
+        <TextInput
+          placeholder="Enter Custom Amount (Min ₹50)"
+          style={styles.input}
+          keyboardType="numeric"
+        />
 
-        <View style={styles.recurringCard}>
-          <View style={styles.recurringRow}>
-            <Feather name="refresh-ccw" size={20} color="#0f7c4f" />
-            <View style={{ marginLeft: 10 }}>
-              <Text style={styles.recurringTitle}>Monthly Recurring</Text>
-              <Text style={styles.recurringSub}>
-                Automate your rewards every month
-              </Text>
-            </View>
+        <View style={styles.taxBox}>
+          <View>
+            <Text style={styles.taxTitle}>TAX BENEFIT</Text>
+            <Text style={styles.taxSub}>Generate Tax Certificate (80G)</Text>
           </View>
+          <Switch
+            value={taxBenefit}
+            onValueChange={setTaxBenefit}
+            trackColor={{ false: "#ccc", true: "#0f7c4f" }}
+          />
         </View>
-
-        <View style={styles.card}>
-          <View style={styles.rowBetween}>
-            <Text style={styles.cardTitle}>Donor Details</Text>
-            <Text style={styles.editText}>Edit</Text>
-          </View>
-          <Text style={styles.detailText}>Full Name</Text>
-          <Text style={styles.detailValue}>Ahmed Siddiqui</Text>
-          <Text style={styles.detailText}>Email Address</Text>
-          <Text style={styles.detailValue}>ahmed.s@example.com</Text>
-        </View>
-
-        <Text style={styles.sectionTitle}>SECURE PAYMENT</Text>
-
-        {paymentMethods.map((method) => (
-          <TouchableOpacity
-            key={method.label}
-            style={[ styles.paymentButton, paymentMethod === method.label && styles.paymentActive, ]} onPress={() => setPaymentMethod(method.label)} >
-            <View style={styles.paymentRow}>
-              {method.icon}
-              <Text style={[ styles.paymentText, paymentMethod === method.label && styles.paymentTextActive, ]}>
-                {method.label}
-              </Text>
-            </View>
-
-            <MaterialIcons name={ paymentMethod === method.label ? "radio-button-checked" : "radio-button-unchecked" } size={20}
-              color={paymentMethod === method.label ? "#0f7c4f" : "#9ca3af"}
-            />
-          </TouchableOpacity>
-        ))}
       </ScrollView>
 
       <View style={styles.bottomBar}>
-        <View>
-          <Text style={styles.totalLabel}>TOTAL AMOUNT</Text>
-          <Text style={styles.totalAmount}>
-            ₹{selectedAmount.toLocaleString()}.00
-          </Text>
-        </View>
-
-        <TouchableOpacity style={styles.donateButton}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Text style={styles.donateButtonText}>Complete Donation</Text>
-            <Feather
-              name="arrow-right"
-              size={18}
-              color="#fff"
-              style={{ marginLeft: 6 }}
-            />
-          </View>
+        <TouchableOpacity style={styles.proceedButton}>
+          <Text style={styles.proceedText}>Proceed to Payment</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -149,192 +199,175 @@ export default function DonateScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F5F6F8",
-  },
-  content: {
+  container: { flex: 1, backgroundColor: "#F5F6F8" },
+
+  header: {
+    backgroundColor: "#0f7c4f",
     padding: 20,
-    paddingBottom: 120,
+    paddingTop: 50,
   },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: "700",
-    color: "#6b7280",
-    marginTop: 20,
-    marginBottom: 12,
+
+  headerTitle: { color: "#fff", fontSize: 20, fontWeight: "700" },
+  headerSub: { color: "#d1fae5", marginTop: 6 },
+
+  progressContainer: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
-  typeRow: {
+
+  progressLabels: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  typeButton: {
-    flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    padding: 14,
-    marginRight: 10,
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
-    alignItems: "center",
+
+  activeStep: { color: "#0f7c4f", fontWeight: "700", fontSize: 12 },
+  inactiveStep: { color: "#9ca3af", fontSize: 12 },
+
+  progressBarBackground: {
+    height: 6,
+    backgroundColor: "#e5e7eb",
+    borderRadius: 6,
+    marginTop: 10,
   },
-  typeButtonActive: {
-    borderColor: "#0f7c4f",
-    backgroundColor: "#e6f4ee",
+
+  progressFill: {
+    width: "50%",
+    height: 6,
+    backgroundColor: "#0f7c4f",
+    borderRadius: 6,
   },
-  typeText: {
-    fontWeight: "600",
-  },
-  typeTextActive: {
-    color: "#0f7c4f",
-  },
-  amountGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  amountButton: {
-    width: "30%",
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    paddingVertical: 16,
-    marginBottom: 12,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
-  },
-  amountButtonActive: {
-    borderColor: "#0f7c4f",
-    backgroundColor: "#e6f4ee",
-  },
-  amountText: {
-    fontWeight: "600",
-  },
-  amountTextActive: {
-    color: "#0f7c4f",
-  },
-  customInput: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
+
+  stepText: {
+    textAlign: "center",
     marginTop: 8,
-  },
-  recurringCard: {
-    backgroundColor: "#dff2e9",
-    borderRadius: 16,
-    padding: 16,
-    marginTop: 20,
-  },
-  recurringTitle: {
-    fontWeight: "700",
-  },
-  recurringSub: {
-    fontSize: 12,
     color: "#6b7280",
   },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    padding: 16,
+
+  content: { padding: 20, paddingBottom: 120 },
+
+  sectionLabel: {
+    fontWeight: "700",
     marginTop: 20,
+    marginBottom: 8,
   },
-  rowBetween: {
+
+  projectBox: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 14,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 10,
   },
-  cardTitle: {
-    fontWeight: "700",
-  },
-  editText: {
-    color: "#0f7c4f",
-    fontWeight: "600",
-  },
-  detailText: {
-    fontSize: 12,
-    color: "#6b7280",
-    marginTop: 6,
-  },
-  detailValue: {
-    fontWeight: "600",
-  },
-  paymentButton: {
+
+  dropdown: {
     backgroundColor: "#fff",
-    borderRadius: 14,
-    padding: 16,
-    marginBottom: 12,
+    borderRadius: 12,
+    marginTop: 6,
     borderWidth: 1,
     borderColor: "#e5e7eb",
   },
-  paymentActive: {
+
+  dropdownItem: {
+    padding: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: "#f3f4f6",
+  },
+
+  typeRow: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
+
+  typeButton: {
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+  },
+
+  typeActive: {
     borderColor: "#0f7c4f",
     backgroundColor: "#e6f4ee",
   },
-  paymentText: {
-    fontWeight: "600",
+
+  typeTextActive: { color: "#0f7c4f", fontWeight: "700" },
+
+  dedicateRow: {
+    flexDirection: "row",
+    backgroundColor: "#e5e7eb",
+    borderRadius: 30,
+    padding: 4,
   },
-  paymentTextActive: {
-    color: "#0f7c4f",
+
+  dedicateButton: {
+    flex: 1,
+    paddingVertical: 8,
+    alignItems: "center",
+    borderRadius: 30,
   },
+
+  dedicateActive: {
+    backgroundColor: "#fff",
+  },
+
+  dedicateTextActive: {
+    fontWeight: "700",
+  },
+
+  frequencyRow: { flexDirection: "row", gap: 10 },
+
+  freqButton: {
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 20,
+  },
+
+  freqActive: { backgroundColor: "#0f7c4f" },
+
+  freqTextActive: { color: "#fff" },
+
+  amountGrid: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
+
+  amountButton: {
+    backgroundColor: "#fff",
+    padding: 14,
+    borderRadius: 12,
+  },
+
+  amountActive: { backgroundColor: "#e6f4ee" },
+
+  amountTextActive: { color: "#0f7c4f", fontWeight: "700" },
+
+  input: {
+    backgroundColor: "#fff",
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 10,
+  },
+
+  taxBox: {
+    marginTop: 20,
+    backgroundColor: "#fff7ed",
+    padding: 14,
+    borderRadius: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
   bottomBar: {
     position: "absolute",
     bottom: 0,
     width: "100%",
     backgroundColor: "#fff",
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderColor: "#e5e7eb",
   },
-  totalLabel: {
-    fontSize: 12,
-    color: "#6b7280",
-  },
-  totalAmount: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#0f7c4f",
-  },
-  donateButton: {
+
+  proceedButton: {
     backgroundColor: "#0f7c4f",
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 12,
-  },
-  donateButtonText: {
-    color: "#fff",
-    fontWeight: "700",
-  },
-  typeContent: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-  },
-
-  recurringRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-
-  paymentButton: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
     padding: 16,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "#e5e7eb",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    borderRadius: 12,
     alignItems: "center",
   },
 
-  paymentRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-  },
+  proceedText: { color: "#fff", fontWeight: "700" },
 });

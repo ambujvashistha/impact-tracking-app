@@ -13,9 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ambuj.impacttracking"
     },
     "android": {
+      "package": "com.ambuj.impacttracking",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -24,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3eccac43-0627-4b91-9ff3-ac90100f7eb4"
+      }
+    },
+    "owner": "ambujvashistha"
   }
 }
